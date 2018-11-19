@@ -1,4 +1,4 @@
-package it.sevenbits.exceptions;
+package it.sevenbits.javaformatter.exceptions;
 
 /**
  * Exception class, thrown when something goes wrong with reading

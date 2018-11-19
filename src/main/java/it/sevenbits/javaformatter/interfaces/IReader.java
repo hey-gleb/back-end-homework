@@ -1,6 +1,8 @@
-package it.sevenbits.interfaces;
+package it.sevenbits.javaformatter.interfaces;
 
-import it.sevenbits.exceptions.ReaderException;
+import it.sevenbits.javaformatter.exceptions.ReaderException;
+
+import java.io.IOException;
 
 /**
  * Interface with functions for reading one symbol from somewhere and checking is there next symbol or not
@@ -19,5 +21,5 @@ public interface IReader {
      *
      * @return next symbol
      */
-    char read();
+    char read() throws ReaderException, IOException;
 }

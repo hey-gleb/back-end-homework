@@ -1,6 +1,6 @@
-package it.sevenbits.interfaces;
+package it.sevenbits.javaformatter.interfaces;
 
-import it.sevenbits.exceptions.WriterException;
+import it.sevenbits.javaformatter.WriterException;
 
 /**
  * Interface with function for writing symbol to somewhere

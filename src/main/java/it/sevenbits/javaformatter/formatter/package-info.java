@@ -1,4 +1,4 @@
 /**
  * The package contains Formatter class for modifying code.
  */
-package it.sevenbits.formatter;
+package it.sevenbits.javaformatter.formatter;

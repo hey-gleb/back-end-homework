@@ -1,9 +1,9 @@
-package it.sevenbits.formatter;
+package it.sevenbits.javaformatter.formatter;
 
-import it.sevenbits.exceptions.ReaderException;
-import it.sevenbits.exceptions.WriterException;
-import it.sevenbits.interfaces.IReader;
-import it.sevenbits.interfaces.IWriter;
+import it.sevenbits.javaformatter.exceptions.ReaderException;
+import it.sevenbits.javaformatter.WriterException;
+import it.sevenbits.javaformatter.interfaces.IReader;
+import it.sevenbits.javaformatter.interfaces.IWriter;
 
 /**
  * Class with functions for modifying code to correct one

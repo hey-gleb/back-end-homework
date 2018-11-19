@@ -1,7 +1,7 @@
-package it.sevenbits.stringIO;
+package it.sevenbits.javaformatter;
 
-import it.sevenbits.exceptions.ReaderException;
-import it.sevenbits.interfaces.IReader;
+import it.sevenbits.javaformatter.exceptions.ReaderException;
+import it.sevenbits.javaformatter.interfaces.IReader;
 
 /**
  * Implementation of IReader interface
@@ -24,20 +24,12 @@ public class StringReader implements IReader {
         this.symbolPosition = 0;
     }
 
-    /**
-     * Show is there another symbol or not
-     *
-     * @return true if there is next symbol. False if there is no symbols left
-     */
+    @Override
     public boolean hasNext() {
         return symbolPosition < mainString.length();
     }
 
-    /**
-     * Read one symbol from string
-     *
-     * @return read symbol
-     */
+    @Override
     public char read() {
         char currentSymbol = mainString.charAt(symbolPosition);
         symbolPosition++;
