@@ -8,7 +8,7 @@ public class Token implements IToken {
     private String lexeme;
 
     /**
-     * Token constructor with 2 parameters
+     * Token constructor with two parameters
      *
      * @param name   - token's name
      * @param lexeme - character sequence
@@ -19,7 +19,7 @@ public class Token implements IToken {
     }
 
     /**
-     * Token constructor with 1 parameter
+     * Token constructor with one parameter
      *
      * @param lexeme - character sequence
      */
