@@ -1,5 +1,6 @@
 package it.sevenbits.javaformatter.lexer;
 
+import it.sevenbits.javaformatter.exceptions.LexerException;
 import it.sevenbits.javaformatter.exceptions.ReaderException;
 
 public interface ILexer {
@@ -8,8 +9,9 @@ public interface ILexer {
      *
      * @return new token
      * @throws ReaderException is thrown, if something goes wrong with reading character
+     * @throws LexerException is thrown, if something wrong with lexeme
      */
-    IToken readToken() throws ReaderException;
+    IToken readToken() throws ReaderException, LexerException;
 
     /**
      * Checks is there another one token or not

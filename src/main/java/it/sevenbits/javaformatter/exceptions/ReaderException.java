@@ -4,12 +4,12 @@ package it.sevenbits.javaformatter.exceptions;
  * Exception class, thrown when something goes wrong with reading
  */
 public class ReaderException extends Exception {
-    /**
-     * ReaderException's constructor
-     */
-    public ReaderException() {
-    }
-
+//    /**
+//     * ReaderException's constructor
+//     */
+//    public ReaderException() {
+//    }
+//
     /**
      * ReaderException's constructor with one parameter
      *

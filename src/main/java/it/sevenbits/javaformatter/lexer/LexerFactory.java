@@ -2,6 +2,9 @@ package it.sevenbits.javaformatter.lexer;
 
 import it.sevenbits.javaformatter.interfaces.IReader;
 
+/**
+ * Implementation of ILexerFactory interface
+ */
 public class LexerFactory implements ILexerFactory {
 
     /**

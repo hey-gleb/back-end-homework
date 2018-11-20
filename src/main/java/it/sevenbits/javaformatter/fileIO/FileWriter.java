@@ -3,12 +3,25 @@ package it.sevenbits.javaformatter.fileIO;
 import it.sevenbits.javaformatter.exceptions.WriterException;
 import it.sevenbits.javaformatter.interfaces.IWriter;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
-public class FileWriter implements IWriter {
+/**
+ * Implementation of IWriter interface
+ */
+public class FileWriter implements IWriter, AutoCloseable {
     private BufferedWriter bufferedWriter;
 
+    /**
+     * FileWriter constructor with one parameter
+     *
+     * @param filePath need to open thread
+     * @throws WriterException is thrown if file doesn't exist
+     */
     public FileWriter(final String filePath) throws WriterException {
         try {
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), StandardCharsets.UTF_8));
@@ -23,6 +36,15 @@ public class FileWriter implements IWriter {
             bufferedWriter.append(symbol);
         } catch (IOException e) {
             throw new WriterException("Something goes wrong while writing symbol into the file");
+        }
+    }
+
+    @Override
+    public void close() throws WriterException {
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new WriterException("Something goes wrong with closing thread", e);
         }
     }
 }

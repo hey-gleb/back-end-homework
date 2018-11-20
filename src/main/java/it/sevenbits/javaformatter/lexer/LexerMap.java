@@ -1,11 +1,20 @@
 package it.sevenbits.javaformatter.lexer;
 
+import it.sevenbits.javaformatter.exceptions.LexerException;
+
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class has all lexemes
+ */
 public class LexerMap {
     private HashMap<String, String> lexerMap;
+    private char[] separators;
 
+    /**
+     * LexerMap class with no parameters
+     */
     public LexerMap() {
         lexerMap = new HashMap<>();
         lexerMap.put("SINGLE_LINE_COMMENT", "//");
@@ -17,14 +26,34 @@ public class LexerMap {
         lexerMap.put("SEMICOLON", ";");
         lexerMap.put("WHITESPACE", " ");
 
+        separators = new char[]{',', '.', '(', ')', '[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@', ' '};
     }
 
-    public String getKey(final String name) {
-        for (Map.Entry<String, String> entry : lexerMap.entrySet()) {
-            if (name.equals(entry.getValue())) {
-                return entry.getKey();
+    /**
+     * Function need to check is there KEY-VALUE pair in the HashMap
+     * @param value value of KEY-VALUE pair
+     * @return key if there is KEY-VALUE pair in the HashMap, otherwise return null
+     * @throws LexerException is thrown, if value is null
+     */
+    public String getKey(final String value) throws LexerException {
+        try {
+            for (Map.Entry<String, String> entry : lexerMap.entrySet()) {
+                if (value.equals(entry.getValue())) {
+                    return entry.getKey();
+                }
             }
+            return null;
+        } catch (NullPointerException e) {
+            throw new LexerException("Value is null", e);
         }
-        return null;
     }
+
+//    public boolean isSymbolSeparator(final char symbol) {
+//        for (char character : separators) {
+//            if (symbol == character) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

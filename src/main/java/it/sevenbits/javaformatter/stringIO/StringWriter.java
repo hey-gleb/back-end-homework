@@ -21,6 +21,7 @@ public class StringWriter implements IWriter {
      * Write one symbol into stringBuilder;
      *
      * @param symbol - char that need to be written into stringBuilder
+     * @throws WriterException is thrown, if something goes wrong with writing
      */
     public void write(final char symbol) throws WriterException {
         if (symbol > maxChar) {

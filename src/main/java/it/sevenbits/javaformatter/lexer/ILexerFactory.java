@@ -13,6 +13,7 @@ public interface ILexerFactory {
      *
      * @param reader
      * @return new Lexer
+     * @param reader - need to read symbols
      * @throws ReaderException is thrown, if something goes wrong
      */
     ILexer createLexer(IReader reader);

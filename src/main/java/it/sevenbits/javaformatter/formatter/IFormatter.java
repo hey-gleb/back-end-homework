@@ -1,5 +1,6 @@
 package it.sevenbits.javaformatter.formatter;
 
+import it.sevenbits.javaformatter.exceptions.LexerException;
 import it.sevenbits.javaformatter.exceptions.WriterException;
 import it.sevenbits.javaformatter.exceptions.ReaderException;
 import it.sevenbits.javaformatter.interfaces.IReader;
@@ -17,6 +18,7 @@ public interface IFormatter {
      * @param writer is needed for writing formatted code to somewhere (depends on implementation)
      * @throws WriterException is thrown, if something goes wrong with writing
      * @throws ReaderException is thrown, if something goes wrong with reading
+     * @throws LexerException is thrown, if something goes wrong with lexeme
      */
-    void format(IReader reader, IWriter writer) throws WriterException, ReaderException;
+    void format(IReader reader, IWriter writer) throws WriterException, ReaderException, LexerException;
 }

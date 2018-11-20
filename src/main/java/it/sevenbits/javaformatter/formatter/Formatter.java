@@ -1,5 +1,6 @@
 package it.sevenbits.javaformatter.formatter;
 
+import it.sevenbits.javaformatter.exceptions.LexerException;
 import it.sevenbits.javaformatter.exceptions.ReaderException;
 import it.sevenbits.javaformatter.exceptions.WriterException;
 import it.sevenbits.javaformatter.interfaces.IReader;
@@ -30,7 +31,7 @@ public class Formatter implements IFormatter {
     }
 
     @Override
-    public void format(final IReader reader, final IWriter writer) throws WriterException, ReaderException {
+    public void format(final IReader reader, final IWriter writer) throws WriterException, ReaderException, LexerException {
         ILexer lexer = lexerFactory.createLexer(reader);
         while (lexer.hasMoreTokens()) {
             IToken token = lexer.readToken();
@@ -83,7 +84,7 @@ public class Formatter implements IFormatter {
         }
     }
 
-    public void write(final IWriter writer, final String lexema) throws WriterException {
+    private void write(final IWriter writer, final String lexema) throws WriterException {
         for (char symbol : lexema.toCharArray()) {
             writer.write(symbol);
         }

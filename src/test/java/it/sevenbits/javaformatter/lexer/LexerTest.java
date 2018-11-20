@@ -1,10 +1,13 @@
 package it.sevenbits.javaformatter.lexer;
 
+import it.sevenbits.javaformatter.exceptions.LexerException;
 import it.sevenbits.javaformatter.exceptions.ReaderException;
 import it.sevenbits.javaformatter.interfaces.IReader;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,12 +25,20 @@ public class LexerTest {
     @Test
     public void testHasMoreTokens() throws ReaderException {
         when(reader.hasNext()).thenReturn(true, false);
-        when(reader.read()).thenReturn('{');
-        assertFalse("Wrong result", lexer.hasMoreTokens());
+        assertTrue("Wrong result", lexer.hasMoreTokens());
     }
 
     @Test
-    public void testReadToken() {
+    public void testReadToken() throws ReaderException, LexerException {
+        when(reader.hasNext()).thenReturn(true, false);
+        when(reader.read()).thenReturn('{');
+        assertEquals("Wrong result!", new Token("{"), lexer.readToken());
+    }
 
+    @Test(expected = LexerException.class)
+    public void emptyLexemaTest() throws LexerException, ReaderException {
+        when(reader.hasNext()).thenReturn(true, false);
+        when(reader.read()).thenReturn(null);
+        lexer.readToken();
     }
 }
