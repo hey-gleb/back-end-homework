@@ -17,24 +17,24 @@ public class StringReaderTest {
     }
 
     @Test(expected = ReaderException.class)
-    public void textIsNullTest() throws ReaderException {
+    public void testTextIsNull() throws ReaderException {
         stringReader = new StringReader(null);
     }
 
     @Test
-    public void hasNextTest() throws ReaderException {
+    public void testHasNextSymbol() throws ReaderException {
         stringReader = new StringReader("Test");
         assertTrue("Wrong result!", stringReader.hasNext());
     }
 
     @Test
-    public void readTest() throws ReaderException {
+    public void testReadSymbol() throws ReaderException {
         stringReader = new StringReader("Test line");
         assertEquals("Wrong result!", 'T', stringReader.read());
     }
 
     @Test (expected = ReaderException.class)
-    public void nullStringTest() throws ReaderException {
+    public void testReadFromNullString() throws ReaderException {
         stringReader = new StringReader(null);
     }
 }

@@ -16,28 +16,30 @@ public class LexerTest {
     private ILexer lexer;
 
     @Before
-    public void setUp() throws ReaderException {
+    public void setUp() {
         reader = mock(IReader.class);
         lexer = new Lexer(reader);
     }
 
     @Test
-    public void testHasMoreTokens() throws ReaderException {
-        when(reader.hasNext()).thenReturn(true, false);
-        assertTrue("Wrong result", lexer.hasMoreTokens());
+    public void testHasMoreTokens() throws LexerException {
+        try {
+            when(reader.hasNext()).thenReturn(true, false);
+            assertTrue("Wrong result", lexer.hasMoreTokens());
+        } catch (ReaderException e) {
+            throw new LexerException("Something goes wrong with reading", e);
+        }
     }
 
     @Test
-    public void testReadToken() throws ReaderException, LexerException {
-        when(reader.hasNext()).thenReturn(true, false);
-        when(reader.read()).thenReturn('{');
-        assertEquals("Wrong result!", new Token("{"), lexer.readToken());
-    }
-
-    @Test(expected = LexerException.class)
-    public void emptyLexemaTest() throws LexerException, ReaderException {
-        when(reader.hasNext()).thenReturn(true, false);
-        when(reader.read()).thenReturn(null);
-        lexer.readToken();
+    public void testReadToken() throws LexerException {
+        try {
+            when(reader.hasNext()).thenReturn(true, true, false);
+            when(reader.read()).thenReturn('{');
+            assertEquals("Wrong result!", new Token("CURLY_BRACE_OPEN", "{").getName(), lexer.readToken().getName());
+            assertEquals("Wrong result!", new Token("CURLY_BRACE_OPEN", "{").getLexeme(), lexer.readToken().getLexeme());
+        } catch (ReaderException e) {
+            throw new LexerException("Something goes wrong with reading", e);
+        }
     }
 }

@@ -22,28 +22,31 @@ public class Lexer implements ILexer {
     }
 
     @Override
-    public IToken readToken() throws ReaderException, LexerException {
+    public IToken readToken() throws LexerException {
         stringBuilder = new StringBuilder();
         char currentChar;
-        while (reader.hasNext()) {
-            currentChar = reader.read();
-//            if (lexerMap.isSymbolSeparator(currentChar) && !isSeparator) {
-//                lastSymbol = currentChar;
-//                isSeparator = true;
-//                return new Token(stringBuilder.toString());
-//            }
-            stringBuilder.append(currentChar);
-            if (lexerMap.getKey(stringBuilder.toString()) != null) {
-                return new Token(lexerMap.getKey(stringBuilder.toString()), stringBuilder.toString());
-            } else {
-                return new Token(stringBuilder.toString());
+        try {
+            while (reader.hasNext()) {
+                currentChar = reader.read();
+                stringBuilder.append(currentChar);
+                if (lexerMap.getKey(stringBuilder.toString()) != null) {
+                    return new Token(lexerMap.getKey(stringBuilder.toString()), stringBuilder.toString());
+                } else {
+                    return new Token(stringBuilder.toString());
+                }
             }
+            return null;
+        } catch (ReaderException e) {
+            throw new LexerException("Something goes wrong with reading", e);
         }
-        return null;
     }
 
     @Override
-    public boolean hasMoreTokens() throws ReaderException {
-        return reader.hasNext();
+    public boolean hasMoreTokens() throws LexerException {
+        try {
+            return reader.hasNext();
+        } catch (ReaderException e) {
+            throw new LexerException("Something goes wrong with checking has next or not", e);
+        }
     }
 }

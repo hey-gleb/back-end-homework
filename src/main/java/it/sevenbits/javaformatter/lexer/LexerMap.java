@@ -24,7 +24,7 @@ public class LexerMap {
         lexerMap.put("SEMICOLON", ";");
         lexerMap.put("WHITESPACE", " ");
 
-        separators = new char[]{',', '.', '(', ')', '[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@', ' '};
+        separators = new char[]{',', '.', ':', ';', '+', '-', '*', '/', '<', '>', '@', ' '};
     }
 
     /**
@@ -45,13 +45,4 @@ public class LexerMap {
             throw new LexerException("Value is null", e);
         }
     }
-
-//    public boolean isSymbolSeparator(final char symbol) {
-//        for (char character : separators) {
-//            if (symbol == character) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }

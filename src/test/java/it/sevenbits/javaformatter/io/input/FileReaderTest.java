@@ -27,12 +27,12 @@ public class FileReaderTest {
     }
 
     @Test
-    public void hasNextTest() {
+    public void testHasNextSymbol() {
         assertTrue("Wrong result!", fileReader.hasNext());
     }
 
     @Test
-    public void readTest() throws ReaderException {
+    public void testReadSymbol() throws ReaderException {
         try (BufferedReader bufferedReader = new BufferedReader(new java.io.FileReader("readFile.txt"))) {
             assertEquals("Wrong result!", bufferedReader.readLine().charAt(0), fileReader.read());
         } catch (FileNotFoundException e) {
@@ -40,5 +40,11 @@ public class FileReaderTest {
         } catch (IOException e) {
             throw new ReaderException("Something goes wrong with reading file", e);
         }
+    }
+
+    @Test(expected = ReaderException.class)
+    public void testReadFromCloseStream() throws ReaderException {
+        close();
+        fileReader.read();
     }
 }

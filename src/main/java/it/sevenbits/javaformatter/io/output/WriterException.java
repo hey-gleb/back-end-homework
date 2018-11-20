@@ -4,13 +4,7 @@ package it.sevenbits.javaformatter.io.output;
  * Exception class, thrown when something goes wrong with writing
  */
 public class WriterException extends Exception {
-//
-//    /**
-//     * WriterException's constructor
-//     */
-//    public WriterException() {
-//    }
-//
+
     /**
      * WriterException's constructor with one parameter
      *

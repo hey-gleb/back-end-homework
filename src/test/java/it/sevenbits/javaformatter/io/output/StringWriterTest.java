@@ -16,14 +16,15 @@ public class StringWriterTest {
     }
 
     @Test
-    public void writeCharTest() throws WriterException {
+    public void testWriteChar() throws WriterException {
         String testString = "Hello";
         for (char symbol : testString.toCharArray())
             stringWriter.write(symbol);
     }
 
+
     @Test(expected = WriterException.class)
-    public void writeWrongCharTest() throws WriterException {
+    public void testWriteWrongChar() throws WriterException {
         stringWriter.write((char) -10);
     }
 

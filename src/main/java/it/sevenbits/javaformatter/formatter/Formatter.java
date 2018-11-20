@@ -27,7 +27,7 @@ public class Formatter implements IFormatter {
         level = 0;
         isOneWhiteSpace = true;
         isNewLine = false;
-        this.lexerFactory = new LexerFactory();
+        lexerFactory = new LexerFactory();
     }
 
     @Override
@@ -69,6 +69,7 @@ public class Formatter implements IFormatter {
                     if (isNewLine) {
                         addTabulation(writer);
                         isNewLine = false;
+                        isOneWhiteSpace = false;
                     }
                     isOneWhiteSpace = true;
                     write(writer, token.getLexeme());
@@ -79,8 +80,9 @@ public class Formatter implements IFormatter {
 
 
     private void addTabulation(final IWriter writer) throws WriterException {
-        for (int i = 0; i < level; i++) {
-            writer.write('\t');
+        final int numberOfWhiteSpaces = 4;
+        for (int i = 0; i < level * numberOfWhiteSpaces; i++) {
+            writer.write(' ');
         }
     }
 

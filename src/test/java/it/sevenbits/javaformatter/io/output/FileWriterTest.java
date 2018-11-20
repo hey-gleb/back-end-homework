@@ -20,7 +20,13 @@ public class FileWriterTest {
     }
 
     @Test
-    public void writeCharToFileTest() throws WriterException {
+    public void testWriteCharToFile() throws WriterException {
         fileWriter.write('1');
+    }
+
+    @Test(expected = WriterException.class)
+    public void testWriteToCloseStream() throws WriterException {
+        close();
+        fileWriter.write('a');
     }
 }

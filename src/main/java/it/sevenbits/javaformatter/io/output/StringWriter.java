@@ -6,6 +6,7 @@ package it.sevenbits.javaformatter.io.output;
 public class StringWriter implements IWriter {
     private final StringBuilder stringBuilder;
     private final int maxChar = 255;
+    private final int minChar = 0;
 
     /**
      * StringWriter constructor with no parameters
@@ -21,7 +22,7 @@ public class StringWriter implements IWriter {
      * @throws WriterException is thrown, if something goes wrong with writing
      */
     public void write(final char symbol) throws WriterException {
-        if (symbol > maxChar) {
+        if (symbol < minChar || symbol > maxChar) {
             throw new WriterException("Wrong char");
         }
         stringBuilder.append(symbol);

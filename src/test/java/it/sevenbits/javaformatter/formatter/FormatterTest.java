@@ -19,12 +19,12 @@ public class FormatterTest {
     public void SetUp() throws ReaderException {
         formatter = new Formatter();
         stringWriter = new StringWriter();
-        stringReader = new StringReader("public class HelloWorld {     public static void main(String[] args) { System.out.println(\"Hello, World\");     } }");
+        stringReader = new StringReader("aaa   {   bbbb;   ccc;   wwww;  }");
     }
 
     @Test
-    public void formatTest() throws WriterException, ReaderException, LexerException {
-        String correctResult = "public class HelloWorld {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello, World\");\n\t}\n}";
+    public void testFormatCode() throws WriterException, ReaderException, LexerException {
+        String correctResult = "aaa {\n    bbbb;\n    ccc;\n    wwww;\n}";
         formatter.format(stringReader, stringWriter);
         assertEquals("Wrong result", correctResult, stringWriter.getString());
     }
