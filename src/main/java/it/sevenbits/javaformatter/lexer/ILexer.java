@@ -1,7 +1,6 @@
 package it.sevenbits.javaformatter.lexer;
 
-import it.sevenbits.javaformatter.exceptions.LexerException;
-import it.sevenbits.javaformatter.exceptions.ReaderException;
+import it.sevenbits.javaformatter.io.input.ReaderException;
 
 public interface ILexer {
     /**

@@ -1,7 +1,4 @@
-package it.sevenbits.javaformatter.fileIO;
-
-import it.sevenbits.javaformatter.exceptions.ReaderException;
-import it.sevenbits.javaformatter.interfaces.IReader;
+package it.sevenbits.javaformatter.io.input;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

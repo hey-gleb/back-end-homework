@@ -1,11 +1,11 @@
 package it.sevenbits.javaformatter;
 
-import it.sevenbits.javaformatter.exceptions.LexerException;
-import it.sevenbits.javaformatter.exceptions.ReaderException;
-import it.sevenbits.javaformatter.exceptions.WriterException;
-import it.sevenbits.javaformatter.fileIO.FileReader;
+import it.sevenbits.javaformatter.lexer.LexerException;
+import it.sevenbits.javaformatter.io.input.ReaderException;
+import it.sevenbits.javaformatter.io.output.WriterException;
+import it.sevenbits.javaformatter.io.input.FileReader;
 import it.sevenbits.javaformatter.formatter.Formatter;
-import it.sevenbits.javaformatter.stringIO.StringWriter;
+import it.sevenbits.javaformatter.io.output.StringWriter;
 
 /**
  * Main application entry point

@@ -1,6 +1,4 @@
-package it.sevenbits.javaformatter.interfaces;
-
-import it.sevenbits.javaformatter.exceptions.ReaderException;
+package it.sevenbits.javaformatter.io.input;
 
 /**
  * Interface with functions for reading one symbol from somewhere and checking is there next symbol or not

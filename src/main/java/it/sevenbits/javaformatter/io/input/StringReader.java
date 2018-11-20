@@ -1,7 +1,4 @@
-package it.sevenbits.javaformatter.stringIO;
-
-import it.sevenbits.javaformatter.exceptions.ReaderException;
-import it.sevenbits.javaformatter.interfaces.IReader;
+package it.sevenbits.javaformatter.io.input;
 
 /**
  * Implementation of IReader interface

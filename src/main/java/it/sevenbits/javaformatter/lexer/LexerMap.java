@@ -1,7 +1,5 @@
 package it.sevenbits.javaformatter.lexer;
 
-import it.sevenbits.javaformatter.exceptions.LexerException;
-
 import java.util.HashMap;
 import java.util.Map;
 

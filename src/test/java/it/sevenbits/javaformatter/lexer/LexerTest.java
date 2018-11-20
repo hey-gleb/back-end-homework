@@ -1,8 +1,7 @@
 package it.sevenbits.javaformatter.lexer;
 
-import it.sevenbits.javaformatter.exceptions.LexerException;
-import it.sevenbits.javaformatter.exceptions.ReaderException;
-import it.sevenbits.javaformatter.interfaces.IReader;
+import it.sevenbits.javaformatter.io.input.ReaderException;
+import it.sevenbits.javaformatter.io.input.IReader;
 import org.junit.Before;
 import org.junit.Test;
 

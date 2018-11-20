@@ -1,7 +1,4 @@
-package it.sevenbits.javaformatter.fileIO;
-
-import it.sevenbits.javaformatter.exceptions.WriterException;
-import it.sevenbits.javaformatter.interfaces.IWriter;
+package it.sevenbits.javaformatter.io.output;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

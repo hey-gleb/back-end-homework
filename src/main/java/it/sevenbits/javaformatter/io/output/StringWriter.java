@@ -1,7 +1,4 @@
-package it.sevenbits.javaformatter.stringIO;
-
-import it.sevenbits.javaformatter.exceptions.WriterException;
-import it.sevenbits.javaformatter.interfaces.IWriter;
+package it.sevenbits.javaformatter.io.output;
 
 /**
  * Implementation of IWriter interface

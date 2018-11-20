@@ -1,6 +1,7 @@
-package it.sevenbits.javaformatter.stringIO;
+package it.sevenbits.javaformatter.io.input;
 
-import it.sevenbits.javaformatter.exceptions.ReaderException;
+import it.sevenbits.javaformatter.io.input.ReaderException;
+import it.sevenbits.javaformatter.io.input.StringReader;
 import org.junit.Before;
 import org.junit.Test;
 

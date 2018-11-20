@@ -1,6 +1,7 @@
-package it.sevenbits.javaformatter.fileIO;
+package it.sevenbits.javaformatter.io.output;
 
-import it.sevenbits.javaformatter.exceptions.WriterException;
+import it.sevenbits.javaformatter.io.output.WriterException;
+import it.sevenbits.javaformatter.io.output.FileWriter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
