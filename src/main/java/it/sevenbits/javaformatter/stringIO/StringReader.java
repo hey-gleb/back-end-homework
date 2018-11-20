@@ -1,4 +1,4 @@
-package it.sevenbits.javaformatter;
+package it.sevenbits.javaformatter.stringIO;
 
 import it.sevenbits.javaformatter.exceptions.ReaderException;
 import it.sevenbits.javaformatter.interfaces.IReader;

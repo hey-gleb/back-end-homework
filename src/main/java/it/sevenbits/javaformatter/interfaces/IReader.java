@@ -21,5 +21,5 @@ public interface IReader {
      *
      * @return next symbol
      */
-    char read() throws ReaderException, IOException;
+    char read() throws ReaderException;
 }

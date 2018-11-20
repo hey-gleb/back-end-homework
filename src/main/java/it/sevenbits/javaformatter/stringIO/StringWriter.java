@@ -1,6 +1,6 @@
 package it.sevenbits.javaformatter.stringIO;
 
-import it.sevenbits.javaformatter.WriterException;
+import it.sevenbits.javaformatter.exceptions.WriterException;
 import it.sevenbits.javaformatter.interfaces.IWriter;
 
 /**

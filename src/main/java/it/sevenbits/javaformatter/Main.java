@@ -1,7 +1,9 @@
 package it.sevenbits.javaformatter;
 
 import it.sevenbits.javaformatter.exceptions.ReaderException;
+import it.sevenbits.javaformatter.exceptions.WriterException;
 import it.sevenbits.javaformatter.formatter.Formatter;
+import it.sevenbits.javaformatter.stringIO.StringReader;
 import it.sevenbits.javaformatter.stringIO.StringWriter;
 
 /**
