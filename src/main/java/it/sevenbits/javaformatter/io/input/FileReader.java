@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Implementation of IReader interface
@@ -21,7 +22,7 @@ public class FileReader implements IReader, AutoCloseable {
      */
     public FileReader(final String filePath) throws ReaderException {
         try {
-            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath))); /** Added charset name **/
+            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8));
             readChar = bufferedReader.read();
         } catch (FileNotFoundException e) {
             throw new ReaderException("File does not exist", e);

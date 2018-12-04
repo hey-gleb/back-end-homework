@@ -4,20 +4,20 @@ package it.sevenbits.javaformatter.lexer;
  * Exception class, thrown when something goes wrong with lexeme
  */
 public class LexerException extends Exception {
-//    /**
-//     * LexerException's constructor
-//     */
-//    public LexerException() {
-//    }
-//
-//    /**
-//     * LexerException's constructor with one parameter
-//     *
-//     * @param message - error message
-//     */
-//    public LexerException(final String message) {
-//        super(message);
-//    }
+    /**
+     * LexerException's constructor
+     */
+    public LexerException() {
+    }
+
+    /**
+     * LexerException's constructor with one parameter
+     *
+     * @param message - error message
+     */
+    public LexerException(final String message) {
+        super(message);
+    }
 
     /**
      * LexerException's constructor with two parameters

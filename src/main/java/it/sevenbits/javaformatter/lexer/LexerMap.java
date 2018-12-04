@@ -8,12 +8,11 @@ import java.util.Map;
  */
 public class LexerMap {
     private HashMap<String, String> lexerMap;
-    private char[] separators;
 
     /**
      * LexerMap class with no parameters
      */
-    public LexerMap() {
+     LexerMap() {
         lexerMap = new HashMap<>();
         lexerMap.put("SINGLE_LINE_COMMENT", "//");
         lexerMap.put("MULTILINE_COMMENT_START", "/*");
@@ -23,12 +22,11 @@ public class LexerMap {
         lexerMap.put("CURLY_BRACE_CLOSE", "}");
         lexerMap.put("SEMICOLON", ";");
         lexerMap.put("WHITESPACE", " ");
-
-        separators = new char[]{',', '.', ':', ';', '+', '-', '*', '/', '<', '>', '@', ' '};
     }
 
     /**
      * Function need to check is there KEY-VALUE pair in the HashMap
+     *
      * @param value value of KEY-VALUE pair
      * @return key if there is KEY-VALUE pair in the HashMap, otherwise return null
      * @throws LexerException is thrown, if value is null
