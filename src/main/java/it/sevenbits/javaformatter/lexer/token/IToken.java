@@ -1,4 +1,4 @@
-package it.sevenbits.javaformatter.lexer;
+package it.sevenbits.javaformatter.lexer.token;
 
 /**
  * IToken interface for working with token

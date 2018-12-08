@@ -2,6 +2,7 @@ package it.sevenbits.javaformatter.lexer;
 
 import it.sevenbits.javaformatter.io.input.ReaderException;
 import it.sevenbits.javaformatter.io.input.IReader;
+import it.sevenbits.javaformatter.lexer.token.Token;
 import org.junit.Before;
 import org.junit.Test;
 

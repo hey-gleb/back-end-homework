@@ -32,7 +32,7 @@ public class FileWriter implements IWriter, AutoCloseable {
         try {
             bufferedWriter.append(symbol);
         } catch (IOException e) {
-            throw new WriterException("Something goes wrong while writing symbol into the file");
+            throw new WriterException("Something goes wrong while writing symbol into the file", e);
         }
     }
 

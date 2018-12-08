@@ -7,21 +7,20 @@ import java.util.Map;
  * Class has all lexemes
  */
 public class LexerMap {
+    private String defaultName = "TEXT";
     private HashMap<String, String> lexerMap;
 
     /**
      * LexerMap class with no parameters
      */
-     LexerMap() {
+    LexerMap() {
         lexerMap = new HashMap<>();
-        lexerMap.put("SINGLE_LINE_COMMENT", "//");
-        lexerMap.put("MULTILINE_COMMENT_START", "/*");
-        lexerMap.put("MULTILINE_COMMENT_END", "*/");
-
         lexerMap.put("CURLY_BRACE_OPEN", "{");
         lexerMap.put("CURLY_BRACE_CLOSE", "}");
         lexerMap.put("SEMICOLON", ";");
         lexerMap.put("WHITESPACE", " ");
+        lexerMap.put("NEW_LINE", "\n");
+        lexerMap.put("NONE", "");
     }
 
     /**
@@ -38,7 +37,7 @@ public class LexerMap {
                     return entry.getKey();
                 }
             }
-            return null;
+            return defaultName;
         } catch (NullPointerException e) {
             throw new LexerException("Value is null", e);
         }

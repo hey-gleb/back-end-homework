@@ -1,4 +1,4 @@
-package it.sevenbits.javaformatter.lexer;
+package it.sevenbits.javaformatter.lexer.token;
 
 /**
  * Implementation of IToken interface
@@ -16,6 +16,12 @@ public class Token implements IToken {
     public Token(final String name, final String lexeme) {
         this.name = name;
         this.lexeme = lexeme;
+    }
+
+    /**
+     * Token constructor with no parameters
+     */
+    public Token() {
     }
 
     /**

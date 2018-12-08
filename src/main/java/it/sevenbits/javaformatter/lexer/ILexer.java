@@ -1,5 +1,7 @@
 package it.sevenbits.javaformatter.lexer;
 
+import it.sevenbits.javaformatter.lexer.token.IToken;
+
 /**
  * Interface with function to read tokens from stream and check for more tokens
  */

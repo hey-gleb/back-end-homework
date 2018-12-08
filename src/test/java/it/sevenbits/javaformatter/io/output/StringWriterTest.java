@@ -1,11 +1,9 @@
 package it.sevenbits.javaformatter.io.output;
 
-import it.sevenbits.javaformatter.io.output.WriterException;
-import it.sevenbits.javaformatter.io.output.StringWriter;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
 
 public class StringWriterTest {
     private StringWriter stringWriter;
@@ -16,16 +14,18 @@ public class StringWriterTest {
     }
 
     @Test
-    public void testWriteChar() throws WriterException {
-        String testString = "Hello";
-        for (char symbol : testString.toCharArray())
-            stringWriter.write(symbol);
+    public void testWrite() throws WriterException {
+        stringWriter.write('t');
+        stringWriter.write('e');
+        stringWriter.write('s');
+        stringWriter.write('t');
+        assertEquals("test", stringWriter.getString());
     }
 
-
-    @Test(expected = WriterException.class)
-    public void testWriteWrongChar() throws WriterException {
-        stringWriter.write((char) -10);
+    @Test
+    public void testToString() throws WriterException {
+        stringWriter.write('{');
+        assertEquals("{", stringWriter.getString());
     }
 
 }

@@ -6,12 +6,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Objects;
+
 public class FileWriterTest {
     private FileWriter fileWriter;
 
     @Before
     public void setUp() throws WriterException {
-        fileWriter = new FileWriter("writeFile.txt");
+        fileWriter = new FileWriter(Objects.requireNonNull(getClass().getClassLoader().getResource("testOutput")).getPath());
     }
 
     @After
@@ -26,7 +28,8 @@ public class FileWriterTest {
 
     @Test(expected = WriterException.class)
     public void testWriteToCloseStream() throws WriterException {
-        close();
-        fileWriter.write('a');
+        FileWriter fw = new FileWriter(Objects.requireNonNull(getClass().getClassLoader().getResource("testOutput")).getPath());
+        fw.close();
+        fw.write('a');
     }
 }
