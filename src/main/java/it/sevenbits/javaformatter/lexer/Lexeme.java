@@ -3,7 +3,7 @@ package it.sevenbits.javaformatter.lexer;
 /**
  * Class contains lexeme and boolean to check is it done or not
  */
-public class Lexeme implements ILexeme {
+public class Lexeme implements ILexeme<StringBuilder> {
     private StringBuilder lexeme;
     private boolean isDone;
 
@@ -31,7 +31,7 @@ public class Lexeme implements ILexeme {
     }
 
     @Override
-    public Object getLexeme() {
+    public StringBuilder getLexeme() {
         return lexeme;
     }
 

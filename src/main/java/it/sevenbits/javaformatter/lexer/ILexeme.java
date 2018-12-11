@@ -3,7 +3,7 @@ package it.sevenbits.javaformatter.lexer;
 /**
  * ILexeme interface for collecting lexeme
  */
-public interface ILexeme {
+public interface ILexeme<T> {
 
     /**
      * Function appends symbol to current lexeme
@@ -17,7 +17,7 @@ public interface ILexeme {
      *
      * @return current lexeme
      */
-    Object getLexeme();
+    T getLexeme();
 
     /**
      * Function gets and returns value is done or not
