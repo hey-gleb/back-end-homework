@@ -67,6 +67,7 @@ public class CommandMap {
 
         commandMap.put(new Pair<>(multiComment, null), addCommand);
         commandMap.put(new Pair<>(probablyEndMultiComment, '/'), addCommand);
+        commandMap.put(new Pair<>(probablyEndMultiComment, null), addCommand);
     }
 
     /**

@@ -1,7 +1,6 @@
 package it.sevenbits.javaformatter.formatter.stateMachine;
 
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.Append;
-import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendAndTabulation;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendBraceClose;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendBraceOpen;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendSemicolon;
@@ -36,7 +35,6 @@ public class CommandMap {
         ICommand appendSpace = new AppendSpace(formatterContext);
         ICommand ignore = new IgnoreCommand();
         ICommand appendSemicolon = new AppendSemicolon(formatterContext);
-        ICommand appendAndTabulation = new AppendAndTabulation(formatterContext);
 
         commandMap.put(new Pair<>(null, "TEXT"), append);
         commandMap.put(new Pair<>(null, "CURLY_BRACE_OPEN"), appendBraceOpen);

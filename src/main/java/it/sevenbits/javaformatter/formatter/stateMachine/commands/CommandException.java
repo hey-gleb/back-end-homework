@@ -14,22 +14,4 @@ public class CommandException extends Exception {
     public CommandException(final String message, final Throwable cause) {
         super(message, cause);
     }
-
-    /**
-     * CommandException constructor with one parameters
-     *
-     * @param cause - exception, needed to keep stacktrace
-     */
-    public CommandException(final Throwable cause) {
-        super(cause);
-    }
-
-    /**
-     * CommandException constructor with one parameters
-     *
-     * @param message - error message
-     */
-    public CommandException(final String message) {
-        super(message);
-    }
 }
