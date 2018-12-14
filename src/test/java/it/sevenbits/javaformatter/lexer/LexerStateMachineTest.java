@@ -72,9 +72,15 @@ public class LexerStateMachineTest {
     @Test
     public void testMultiCommentInSingleLine() throws LexerException {
         try {
-            reader = new StringReader("/* test comment 1 */");
+            reader = new StringReader("/* test comment */");
             lexer = new LexerStateMachine(reader);
             assertEquals("/*", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("test", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("comment", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("*/", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }
