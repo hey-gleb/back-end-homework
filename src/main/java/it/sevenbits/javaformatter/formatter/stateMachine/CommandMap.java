@@ -7,6 +7,8 @@ import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendSemicolo
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendSpace;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.ICommand;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.IgnoreCommand;
+import it.sevenbits.javaformatter.properties.Config;
+import it.sevenbits.javaformatter.properties.ConfigException;
 import it.sevenbits.javaformatter.stateMachineSupport.IState;
 import it.sevenbits.javaformatter.stateMachineSupport.Pair;
 import it.sevenbits.javaformatter.lexer.token.IToken;
@@ -25,11 +27,12 @@ public class CommandMap {
      *
      * @param formatterContext - formatter context for modifying
      */
-    public CommandMap(final FormatterContext formatterContext) {
+    public CommandMap(final FormatterContext formatterContext) throws ConfigException {
+        Config config = Config.getInstance();
         commandMap = new HashMap<>();
-        IState spaceAllowedState = new FormatterState("SPACE_ALLOWED");
-        IState singleComment = new FormatterState("SINGLE_LINE_COMMENT");
-        IState multiComment = new FormatterState("MULTI_LINE_COMMENT");
+        IState spaceAllowedState = new FormatterState(config.getProperty("FORMATTER_STATE_SPACE_ALLOWED"));
+        IState singleComment = new FormatterState(config.getProperty("FORMATTER_STATE_SINGLELINE_COM"));
+        IState multiComment = new FormatterState(config.getProperty("FORMATTER_STATE_MULTILINE_COM"));
 
         ICommand append = new Append(formatterContext);
         ICommand appendBraceClose = new AppendBraceClose(formatterContext);

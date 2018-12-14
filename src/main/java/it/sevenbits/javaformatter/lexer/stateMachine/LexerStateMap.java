@@ -21,7 +21,7 @@ public class LexerStateMap {
      *
      * @throws ConfigException is thrown if something goes wrong with reading config file
      */
-    public LexerStateMap() throws ConfigException {
+    LexerStateMap() throws ConfigException {
         lexerStates = new HashMap<>();
         Config config = Config.getInstance();
 
@@ -33,7 +33,7 @@ public class LexerStateMap {
         IState singleComment = new LexerState(config.getProperty("LEXER_STATE_SINGLELINE_COM"));
         IState multiComment = new LexerState(config.getProperty("LEXER_STATE_MULTILINE_COM"));
         IState probablyEndMultiComment = new LexerState(config.getProperty("LEXER_STATE_MAYBER_END_COM"));
-        IState endMultiComment = new LexerState("END_MULTI_LINE_COMMENT");
+        IState endMultiComment = new LexerState(config.getProperty("LEXER_STATE_END_MULTILINE_COM"));
 
         lexerStates.put(new Pair<>(defaultState, null), textState);
         lexerStates.put(new Pair<>(defaultState, '\0'), defaultState);
@@ -50,6 +50,7 @@ public class LexerStateMap {
 
         lexerStates.put(new Pair<>(multiComment, '*'), probablyEndMultiComment);
         lexerStates.put(new Pair<>(multiComment, null), multiComment);
+
         lexerStates.put(new Pair<>(probablyEndMultiComment, null), multiComment);
         lexerStates.put(new Pair<>(probablyEndMultiComment, '/'), endMultiComment);
 

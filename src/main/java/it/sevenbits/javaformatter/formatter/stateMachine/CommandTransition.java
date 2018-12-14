@@ -2,6 +2,7 @@ package it.sevenbits.javaformatter.formatter.stateMachine;
 
 
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.ICommand;
+import it.sevenbits.javaformatter.properties.ConfigException;
 import it.sevenbits.javaformatter.stateMachineSupport.IState;
 import it.sevenbits.javaformatter.lexer.token.IToken;
 
@@ -16,7 +17,7 @@ public class CommandTransition {
      *
      * @param formatterContext - formatter context for modifying
      */
-    public CommandTransition(final FormatterContext formatterContext) {
+    public CommandTransition(final FormatterContext formatterContext) throws ConfigException {
         commandMap = new CommandMap(formatterContext);
     }
 

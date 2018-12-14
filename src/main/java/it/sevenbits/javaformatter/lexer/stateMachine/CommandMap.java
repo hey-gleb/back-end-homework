@@ -36,7 +36,7 @@ public class CommandMap {
         IState singleComment = new LexerState(config.getProperty("LEXER_STATE_SINGLELINE_COM"));
         IState multiComment = new LexerState(config.getProperty("LEXER_STATE_MULTILINE_COM"));
         IState probablyEndMultiComment = new LexerState(config.getProperty("LEXER_STATE_MAYBER_END_COM"));
-        IState endMultiComment = new LexerState("END_MULTI_LINE_COMMENT");
+        IState endMultiComment = new LexerState(config.getProperty("LEXER_STATE_END_MULTILINE_COM"));
 
         ICommand addCommand = new AppendCommand(lexerContext);
         ICommand returnCommand = new ReturnCommand(lexerContext);
