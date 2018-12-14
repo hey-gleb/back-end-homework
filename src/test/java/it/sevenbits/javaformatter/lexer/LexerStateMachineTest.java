@@ -52,7 +52,7 @@ public class LexerStateMachineTest {
         try {
             reader = new StringReader("//Hello {;}");
             lexer = new LexerStateMachine(reader);
-            assertEquals("//Hello {;}", lexer.readToken().getLexeme());
+            assertEquals("//", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }
@@ -74,7 +74,7 @@ public class LexerStateMachineTest {
         try {
             reader = new StringReader("/* test comment 1 */");
             lexer = new LexerStateMachine(reader);
-            assertEquals("/* test comment 1 */", lexer.readToken().getLexeme());
+            assertEquals("/*", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }
@@ -85,7 +85,7 @@ public class LexerStateMachineTest {
         try {
             reader = new StringReader("/* test \n comment \n 2 */");
             lexer = new LexerStateMachine(reader);
-            assertEquals("/* test \n comment \n 2 */", lexer.readToken().getLexeme());
+            assertEquals("/*", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }
@@ -119,7 +119,7 @@ public class LexerStateMachineTest {
         try {
             reader = new StringReader("//  /* test comment */");
             lexer = new LexerStateMachine(reader);
-            assertEquals("//  /* test comment */", lexer.readToken().getLexeme());
+            assertEquals("//", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }
@@ -130,7 +130,13 @@ public class LexerStateMachineTest {
         try {
             reader = new StringReader("/* test comment */ Hello");
             lexer = new LexerStateMachine(reader);
-            assertEquals("/* test comment */", lexer.readToken().getLexeme());
+            assertEquals("/*", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("test", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("comment", lexer.readToken().getLexeme());
+            assertEquals(" ", lexer.readToken().getLexeme());
+            assertEquals("*/", lexer.readToken().getLexeme());
         } catch (ReaderException e) {
             throw new LexerException("Something goes wrong with reading", e);
         }

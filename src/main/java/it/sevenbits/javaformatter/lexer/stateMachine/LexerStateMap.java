@@ -33,6 +33,7 @@ public class LexerStateMap {
         IState singleComment = new LexerState(config.getProperty("LEXER_STATE_SINGLELINE_COM"));
         IState multiComment = new LexerState(config.getProperty("LEXER_STATE_MULTILINE_COM"));
         IState probablyEndMultiComment = new LexerState(config.getProperty("LEXER_STATE_MAYBER_END_COM"));
+        IState endMultiComment = new LexerState("END_MULTI_LINE_COMMENT");
 
         lexerStates.put(new Pair<>(defaultState, null), textState);
         lexerStates.put(new Pair<>(defaultState, '\0'), defaultState);
@@ -41,17 +42,16 @@ public class LexerStateMap {
         lexerStates.put(new Pair<>(defaultState, ';'), reservedState);
         lexerStates.put(new Pair<>(defaultState, '"'), stringLiteral);
         lexerStates.put(new Pair<>(defaultState, '/'), probablyComment);
+        lexerStates.put(new Pair<>(defaultState, '*'), probablyEndMultiComment);
 
         lexerStates.put(new Pair<>(probablyComment, '/'), singleComment);
         lexerStates.put(new Pair<>(probablyComment, '*'), multiComment);
         lexerStates.put(new Pair<>(probablyComment, null), textState);
 
-        lexerStates.put(new Pair<>(singleComment, null), singleComment);
-
         lexerStates.put(new Pair<>(multiComment, '*'), probablyEndMultiComment);
         lexerStates.put(new Pair<>(multiComment, null), multiComment);
         lexerStates.put(new Pair<>(probablyEndMultiComment, null), multiComment);
-        lexerStates.put(new Pair<>(probablyEndMultiComment, '/'), textState);
+        lexerStates.put(new Pair<>(probablyEndMultiComment, '/'), endMultiComment);
 
         lexerStates.put(new Pair<>(stringLiteral, null), stringLiteral);
         lexerStates.put(new Pair<>(stringLiteral, '"'), textState);

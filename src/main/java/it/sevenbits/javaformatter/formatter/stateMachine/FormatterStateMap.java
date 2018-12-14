@@ -26,10 +26,23 @@ public class FormatterStateMap {
         stateMap = new HashMap<>();
 
         IState spaceAllowed = new FormatterState(config.getProperty("FORMATTER_STATE_SPACE_ALLOWED"));
+        IState singleComment = new FormatterState("SINGLE_LINE_COMMENT");
+        IState multiComment = new FormatterState("MULTI_LINE_COMMENT");
 
         stateMap.put(new Pair<>(defaultState, null), defaultState);
         stateMap.put(new Pair<>(defaultState, "TEXT"), spaceAllowed);
+        stateMap.put(new Pair<>(defaultState, "SINGLE_LINE_COMMENT"), singleComment);
+        stateMap.put(new Pair<>(defaultState, "MULTI_LINE_COMMENT"), multiComment);
+
         stateMap.put(new Pair<>(spaceAllowed, "TEXT"), spaceAllowed);
+        stateMap.put(new Pair<>(spaceAllowed, "SINGLE_LINE_COMMENT"), singleComment);
+        stateMap.put(new Pair<>(spaceAllowed, "MULTI_LINE_COMMENT"), multiComment);
+
+        stateMap.put(new Pair<>(singleComment, null), singleComment);
+        stateMap.put(new Pair<>(singleComment, "NEW_LINE"), defaultState);
+
+        stateMap.put(new Pair<>(multiComment, null), multiComment);
+        stateMap.put(new Pair<>(multiComment, "END_MULTI_LINE_COMMENT"), defaultState);
     }
 
     /**

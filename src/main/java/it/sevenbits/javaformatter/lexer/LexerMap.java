@@ -21,6 +21,9 @@ public class LexerMap {
         lexerMap.put("WHITESPACE", " ");
         lexerMap.put("NEW_LINE", "\n");
         lexerMap.put("NONE", "");
+        lexerMap.put("SINGLE_LINE_COMMENT", "//");
+        lexerMap.put("MULTI_LINE_COMMENT", "/*");
+        lexerMap.put("END_MULTI_LINE_COMMENT", "*/");
     }
 
     /**

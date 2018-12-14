@@ -36,6 +36,7 @@ public class CommandMap {
         IState singleComment = new LexerState(config.getProperty("LEXER_STATE_SINGLELINE_COM"));
         IState multiComment = new LexerState(config.getProperty("LEXER_STATE_MULTILINE_COM"));
         IState probablyEndMultiComment = new LexerState(config.getProperty("LEXER_STATE_MAYBER_END_COM"));
+        IState endMultiComment = new LexerState("END_MULTI_LINE_COMMENT");
 
         ICommand addCommand = new AppendCommand(lexerContext);
         ICommand returnCommand = new ReturnCommand(lexerContext);
@@ -51,7 +52,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(textState, ';'), returnCommand);
         commandMap.put(new Pair<>(textState, ' '), returnCommand);
         commandMap.put(new Pair<>(textState, '"'), returnCommand);
-        commandMap.put(new Pair<>(textState, '\n'), ignoreCommand);
+        commandMap.put(new Pair<>(textState, '\n'), addCommand);
         commandMap.put(new Pair<>(defaultState, '/'), addCommand);
 
         commandMap.put(new Pair<>(stringLiteral, null), addCommand);
@@ -59,15 +60,14 @@ public class CommandMap {
         commandMap.put(new Pair<>(spaceState, ' '), ignoreCommand);
         commandMap.put(new Pair<>(spaceState, null), returnCommand);
         commandMap.put(new Pair<>(spaceState, '"'), returnCommand);
-        commandMap.put(new Pair<>(spaceState, '\n'), ignoreCommand);
 
         commandMap.put(new Pair<>(probablyComment, null), addCommand);
-        commandMap.put(new Pair<>(singleComment, null), addCommand);
-        commandMap.put(new Pair<>(singleComment, '\n'), returnCommand);
+        commandMap.put(new Pair<>(singleComment, null), returnCommand);
+        commandMap.put(new Pair<>(multiComment, null), returnCommand);
 
-        commandMap.put(new Pair<>(multiComment, null), addCommand);
         commandMap.put(new Pair<>(probablyEndMultiComment, '/'), addCommand);
         commandMap.put(new Pair<>(probablyEndMultiComment, null), addCommand);
+        commandMap.put(new Pair<>(endMultiComment, null), returnCommand);
     }
 
     /**

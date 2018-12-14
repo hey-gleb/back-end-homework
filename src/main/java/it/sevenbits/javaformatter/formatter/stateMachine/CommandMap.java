@@ -28,6 +28,8 @@ public class CommandMap {
     public CommandMap(final FormatterContext formatterContext) {
         commandMap = new HashMap<>();
         IState spaceAllowedState = new FormatterState("SPACE_ALLOWED");
+        IState singleComment = new FormatterState("SINGLE_LINE_COMMENT");
+        IState multiComment = new FormatterState("MULTI_LINE_COMMENT");
 
         ICommand append = new Append(formatterContext);
         ICommand appendBraceClose = new AppendBraceClose(formatterContext);
@@ -41,6 +43,22 @@ public class CommandMap {
         commandMap.put(new Pair<>(null, "CURLY_BRACE_CLOSE"), appendBraceClose);
         commandMap.put(new Pair<>(null, "WHITESPACE"), ignore);
         commandMap.put(new Pair<>(null, "SEMICOLON"), appendSemicolon);
+        commandMap.put(new Pair<>(null, "SINGLE_LINE_COMMENT"), append);
+        commandMap.put(new Pair<>(null, "MULTI_LINE_COMMENT"), append);
+        commandMap.put(new Pair<>(null, "END_MULTI_LINE_COMMENT"), append);
+
+        commandMap.put(new Pair<>(singleComment, "TEXT"), append);
+        commandMap.put(new Pair<>(singleComment, "CURLY_BRACE_OPEN"), append);
+        commandMap.put(new Pair<>(singleComment, "CURLY_BRACE_CLOSE"), append);
+        commandMap.put(new Pair<>(singleComment, "WHITESPACE"), append);
+        commandMap.put(new Pair<>(singleComment, "SEMICOLON"), append);
+
+        commandMap.put(new Pair<>(multiComment, "TEXT"), append);
+        commandMap.put(new Pair<>(multiComment, "CURLY_BRACE_OPEN"), append);
+        commandMap.put(new Pair<>(multiComment, "CURLY_BRACE_CLOSE"), append);
+        commandMap.put(new Pair<>(multiComment, "WHITESPACE"), append);
+        commandMap.put(new Pair<>(multiComment, "SEMICOLON"), append);
+        commandMap.put(new Pair<>(multiComment, "NEW_LINE"), append);
 
         commandMap.put(new Pair<>(spaceAllowedState, "WHITESPACE"), appendSpace);
     }

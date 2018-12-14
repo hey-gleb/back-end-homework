@@ -36,7 +36,7 @@ public final class Main {
 //            IFormatter formatter = new FormatterStateMachine();
 //            formatter.format(fileReader, fileWriter);
 //        }
-        StringReader stringReader = new StringReader("/** \n* test comment*; {abc} ;;; \n* dhajsfhsajk \n* djafhdasjkfhakjs \n**/");
+        StringReader stringReader = new StringReader("/* hello \n \n ;;; /////{} */ Hello");
         StringWriter stringWriter = new StringWriter();
         IFormatter formatter = new FormatterStateMachine();
         formatter.format(stringReader, stringWriter);
