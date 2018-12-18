@@ -26,6 +26,7 @@ public class CommandMap {
      * CommandMap constructor with no parameters
      *
      * @param formatterContext - formatter context for modifying
+     * @throws ConfigException is thrown if something goes wrong while reading config file
      */
     public CommandMap(final FormatterContext formatterContext) throws ConfigException {
         Config config = Config.getInstance();
@@ -76,12 +77,8 @@ public class CommandMap {
     public ICommand getCommand(final IState currentState, final IToken currentToken) {
         if (commandMap.containsKey(new Pair<>(currentState, currentToken.getName()))) {
             return commandMap.get(new Pair<>(currentState, currentToken.getName()));
-        } else if (commandMap.containsKey(new Pair<>(currentState, (String) null))) {
-            return commandMap.get(new Pair<>(currentState, (String) null));
-        } else if (commandMap.containsKey(new Pair<>((IState) null, currentToken.getName()))) {
-            return commandMap.get(new Pair<>((IState) null, currentToken.getName()));
         } else {
-            return new IgnoreCommand();
+            return commandMap.get(new Pair<>((IState) null, currentToken.getName()));
         }
     }
 }

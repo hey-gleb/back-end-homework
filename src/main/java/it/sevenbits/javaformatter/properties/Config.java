@@ -2,6 +2,7 @@ package it.sevenbits.javaformatter.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -18,7 +19,7 @@ public class Config {
      */
     public Config() throws ConfigException {
         property = new Properties();
-        try (FileInputStream fis = new FileInputStream("config.properties")) {
+        try (FileInputStream fis = new FileInputStream(Objects.requireNonNull(getClass().getClassLoader().getResource("config/config.properties")).getPath())) {
             property.load(fis);
         } catch (IOException e) {
             throw new ConfigException("Can't read config file", e);

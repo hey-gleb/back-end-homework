@@ -16,6 +16,7 @@ public class CommandTransition {
      * CommandTransition constructor with no parameters
      *
      * @param formatterContext - formatter context for modifying
+     * @throws ConfigException is thrown if something goes wrong while reading config file
      */
     public CommandTransition(final FormatterContext formatterContext) throws ConfigException {
         commandMap = new CommandMap(formatterContext);
