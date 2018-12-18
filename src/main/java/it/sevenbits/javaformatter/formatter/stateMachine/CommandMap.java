@@ -3,7 +3,7 @@ package it.sevenbits.javaformatter.formatter.stateMachine;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.Append;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendBraceClose;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendBraceOpen;
-import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendSemicolon;
+import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendNewLineAfterSemicolon;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.AppendSpace;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.ICommand;
 import it.sevenbits.javaformatter.formatter.stateMachine.commands.IgnoreCommand;
@@ -34,22 +34,27 @@ public class CommandMap {
         IState spaceAllowedState = new FormatterState(config.getProperty("FORMATTER_STATE_SPACE_ALLOWED"));
         IState singleComment = new FormatterState(config.getProperty("FORMATTER_STATE_SINGLELINE_COM"));
         IState multiComment = new FormatterState(config.getProperty("FORMATTER_STATE_MULTILINE_COM"));
+        IState afterSemicolonState = new FormatterState(config.getProperty("FORMATTER_STATE_AFTER_SEMICOLON"));
 
         ICommand append = new Append(formatterContext);
         ICommand appendBraceClose = new AppendBraceClose(formatterContext);
         ICommand appendBraceOpen = new AppendBraceOpen(formatterContext);
         ICommand appendSpace = new AppendSpace(formatterContext);
         ICommand ignore = new IgnoreCommand();
-        ICommand appendSemicolon = new AppendSemicolon(formatterContext);
+        ICommand appendNewLineAfterSemicolon = new AppendNewLineAfterSemicolon(formatterContext);
 
         commandMap.put(new Pair<>(null, "TEXT"), append);
         commandMap.put(new Pair<>(null, "CURLY_BRACE_OPEN"), appendBraceOpen);
         commandMap.put(new Pair<>(null, "CURLY_BRACE_CLOSE"), appendBraceClose);
         commandMap.put(new Pair<>(null, "WHITESPACE"), ignore);
-        commandMap.put(new Pair<>(null, "SEMICOLON"), appendSemicolon);
+        commandMap.put(new Pair<>(null, "SEMICOLON"), append);
         commandMap.put(new Pair<>(null, "SINGLE_LINE_COMMENT"), append);
         commandMap.put(new Pair<>(null, "MULTI_LINE_COMMENT"), append);
         commandMap.put(new Pair<>(null, "END_MULTI_LINE_COMMENT"), append);
+
+        commandMap.put(new Pair<>(afterSemicolonState, "CURLY_BRACE_CLOSE"), appendBraceClose);
+        commandMap.put(new Pair<>(afterSemicolonState, "TEXT"), appendNewLineAfterSemicolon);
+        commandMap.put(new Pair<>(afterSemicolonState, "WHITESPACE"), ignore);
 
         commandMap.put(new Pair<>(singleComment, "TEXT"), append);
         commandMap.put(new Pair<>(singleComment, "CURLY_BRACE_OPEN"), append);

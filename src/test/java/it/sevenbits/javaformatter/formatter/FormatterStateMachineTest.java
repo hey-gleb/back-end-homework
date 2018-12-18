@@ -1,19 +1,13 @@
 package it.sevenbits.javaformatter.formatter;
 
-import it.sevenbits.javaformatter.formatter.stateMachine.FormatterState;
-import it.sevenbits.javaformatter.formatter.stateMachine.FormatterStateMap;
 import it.sevenbits.javaformatter.io.input.IReader;
 import it.sevenbits.javaformatter.io.input.ReaderException;
 import it.sevenbits.javaformatter.io.input.StringReader;
-import it.sevenbits.javaformatter.io.output.IWriter;
 import it.sevenbits.javaformatter.io.output.StringWriter;
 import it.sevenbits.javaformatter.io.output.WriterException;
-import it.sevenbits.javaformatter.properties.Config;
 import it.sevenbits.javaformatter.properties.ConfigException;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -121,6 +115,13 @@ public class FormatterStateMachineTest {
         writer = new StringWriter();
         formatter.format(reader, writer);
         assertEquals("/**\n* Line 1\n* Line 2\n* Line 3\n*/", writer.getString());
+    }
 
+    @Test
+    public void testFormatMultiLine() throws ReaderException, FormatterException, ConfigException {
+        reader = new StringReader("aaa { bbb; ccc; ddd; }");
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+        assertEquals("aaa {\n    bbb;\n    ccc;\n    ddd;\n}", writer.getString());
     }
 }
