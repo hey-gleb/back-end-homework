@@ -15,15 +15,15 @@ public class LexerMap {
      */
     LexerMap() {
         lexerMap = new HashMap<>();
-        lexerMap.put("CURLY_BRACE_OPEN", "{");
-        lexerMap.put("CURLY_BRACE_CLOSE", "}");
-        lexerMap.put("SEMICOLON", ";");
-        lexerMap.put("WHITESPACE", " ");
-        lexerMap.put("NEW_LINE", "\n");
-        lexerMap.put("NONE", "");
-        lexerMap.put("SINGLE_LINE_COMMENT", "//");
-        lexerMap.put("MULTI_LINE_COMMENT", "/*");
-        lexerMap.put("END_MULTI_LINE_COMMENT", "*/");
+        lexerMap.put("{", "CURLY_BRACE_OPEN");
+        lexerMap.put("}", "CURLY_BRACE_CLOSE");
+        lexerMap.put(";", "SEMICOLON");
+        lexerMap.put(" ", "WHITESPACE");
+        lexerMap.put("\n", "NEW_LINE");
+        lexerMap.put("", "NONE");
+        lexerMap.put("//", "SINGLE_LINE_COMMENT");
+        lexerMap.put("/*", "MULTI_LINE_COMMENT");
+        lexerMap.put("*/", "END_MULTI_LINE_COMMENT");
     }
 
     /**
@@ -35,10 +35,8 @@ public class LexerMap {
      */
     public String getKey(final String value) throws LexerException {
         try {
-            for (Map.Entry<String, String> entry : lexerMap.entrySet()) {
-                if (value.equals(entry.getValue())) {
-                    return entry.getKey();
-                }
+            if (lexerMap.containsKey(value)) {
+                return lexerMap.get(value);
             }
             return defaultName;
         } catch (NullPointerException e) {
