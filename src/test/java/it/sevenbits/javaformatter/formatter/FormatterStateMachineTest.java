@@ -114,4 +114,13 @@ public class FormatterStateMachineTest {
         doThrow(new WriterException("Oops writer doesn't work")).when(writer).write(any(char.class));
         formatter.format(reader, writer);
     }
+
+    @Test
+    public void testJavaDoc() throws ReaderException, FormatterException, ConfigException {
+        reader = new StringReader("/**\n* Line 1\n* Line 2\n* Line 3\n*/");
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+        assertEquals("/**\n* Line 1\n* Line 2\n* Line 3\n*/", writer.getString());
+
+    }
 }
