@@ -38,7 +38,7 @@ public class FormatterStateMap {
 
         stateMap.put(new Pair<>(afterSemicolonState, null), defaultState);
         stateMap.put(new Pair<>(afterSemicolonState, "WHITESPACE"), afterSemicolonState);
-
+        stateMap.put(new Pair<>(afterSemicolonState, "NEW_LINE"), afterSemicolonState);
 
         stateMap.put(new Pair<>(spaceAllowed, "TEXT"), spaceAllowed);
         stateMap.put(new Pair<>(spaceAllowed, "SINGLE_LINE_COMMENT"), singleComment);

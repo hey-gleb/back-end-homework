@@ -45,6 +45,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(defaultState, null), addCommand);
         commandMap.put(new Pair<>(defaultState, '\0'), ignoreCommand);
         commandMap.put(new Pair<>(reservedState, null), returnCommand);
+//        commandMap.put(new Pair<>(reservedState, '\n'), addCommand);
 
         commandMap.put(new Pair<>(textState, null), addCommand);
         commandMap.put(new Pair<>(textState, '}'), returnCommand);
@@ -52,7 +53,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(textState, ';'), returnCommand);
         commandMap.put(new Pair<>(textState, ' '), returnCommand);
         commandMap.put(new Pair<>(textState, '"'), returnCommand);
-        commandMap.put(new Pair<>(textState, '\n'), addCommand);
+//        commandMap.put(new Pair<>(textState, '\n'), addCommand);
         commandMap.put(new Pair<>(defaultState, '/'), addCommand);
 
         commandMap.put(new Pair<>(stringLiteral, null), addCommand);

@@ -124,4 +124,25 @@ public class FormatterStateMachineTest {
         formatter.format(reader, writer);
         assertEquals("aaa {\n    bbb;\n    ccc;\n    ddd;\n}", writer.getString());
     }
+
+    @Test
+    public void testFormatOnlySemicolonLines() throws ReaderException, FormatterException, ConfigException {
+        reader = new StringReader("aaa; \n bbb; ccc;");
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+        assertEquals("aaa;\nbbb;\nccc;", writer.getString());
+    }
+
+    @Test
+    public void testFormatMixedLines() throws ReaderException, FormatterException, ConfigException {
+        reader = new StringReader("asdasdasdasd\n" +
+                "asdasdasd\n" +
+                "asdasd;\n" +
+                "       asdasdas;\n" +
+                "       asdasd\n" +
+                "       aasd");
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+        assertEquals("asdasdasdasd\nasdasdasd\nasdasd;\nasdasdas;\nasdasd\naasd", writer.getString());
+    }
 }

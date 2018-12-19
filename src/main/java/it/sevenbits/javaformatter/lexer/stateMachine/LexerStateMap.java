@@ -43,6 +43,7 @@ public class LexerStateMap {
         lexerStates.put(new Pair<>(defaultState, '"'), stringLiteral);
         lexerStates.put(new Pair<>(defaultState, '/'), probablyComment);
         lexerStates.put(new Pair<>(defaultState, '*'), probablyEndMultiComment);
+        lexerStates.put(new Pair<>(defaultState, '\n'), reservedState);
 
         lexerStates.put(new Pair<>(probablyComment, '/'), singleComment);
         lexerStates.put(new Pair<>(probablyComment, '*'), multiComment);

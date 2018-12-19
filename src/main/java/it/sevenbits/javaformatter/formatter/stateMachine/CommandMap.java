@@ -51,6 +51,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(null, "SINGLE_LINE_COMMENT"), append);
         commandMap.put(new Pair<>(null, "MULTI_LINE_COMMENT"), append);
         commandMap.put(new Pair<>(null, "END_MULTI_LINE_COMMENT"), append);
+        commandMap.put(new Pair<>(null, "NEW_LINE"), ignore);
 
         commandMap.put(new Pair<>(afterSemicolonState, "CURLY_BRACE_CLOSE"), appendBraceClose);
         commandMap.put(new Pair<>(afterSemicolonState, "TEXT"), appendNewLineAfterSemicolon);
