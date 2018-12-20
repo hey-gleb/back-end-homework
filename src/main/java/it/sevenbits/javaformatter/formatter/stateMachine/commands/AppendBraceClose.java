@@ -43,6 +43,5 @@ public class AppendBraceClose implements ICommand, IWritable {
         for (char symbol : token.getLexeme().toCharArray()) {
             writer.write(symbol);
         }
-//        writer.write('\n');
     }
 }
