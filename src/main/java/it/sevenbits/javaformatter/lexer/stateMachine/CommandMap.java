@@ -53,7 +53,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(textState, ';'), returnCommand);
         commandMap.put(new Pair<>(textState, ' '), returnCommand);
         commandMap.put(new Pair<>(textState, '"'), returnCommand);
-//        commandMap.put(new Pair<>(textState, '\n'), addCommand);
+        commandMap.put(new Pair<>(textState, '\n'), returnCommand);
         commandMap.put(new Pair<>(defaultState, '/'), addCommand);
 
         commandMap.put(new Pair<>(stringLiteral, null), addCommand);

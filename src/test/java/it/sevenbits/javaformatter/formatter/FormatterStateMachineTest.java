@@ -145,4 +145,46 @@ public class FormatterStateMachineTest {
         formatter.format(reader, writer);
         assertEquals("asdasdasdasd\nasdasdasd\nasdasd;\nasdasdas;\nasdasd\naasd", writer.getString());
     }
+
+    @Test
+    public void testFormatRealCode() throws ReaderException, FormatterException, ConfigException {
+        reader = new StringReader("public final class Main {\n" +
+                "    private Main() {}\n" +
+                "    /*\n" +
+                "        asdasdasdasd\n" +
+                "        asdasd;\n" +
+                "        asdasdas;\n" +
+                "        aasd\n" +
+                "     */\n" +
+                "    public static void main(final String[] args) throws ReaderException, FormatterException, ConfigException, WriterException {\n" +
+                "        FileReader fileReader = new FileReader(args[0]);\n" +
+                "        FileWriter fileWriter = new FileWriter(args[1]);\n" +
+                "                        IFormatter formatter = new FormatterStateMachine();\n" +
+                "\n" +
+                "\n" +
+                "            formatter.format(fileReader, fileWriter);\n" +
+                "            //HERE\n" +
+                "        System.out.println(\"Formatter is done\"); //HERE 2\n" +
+                "    }\n" +
+                "}");
+        writer = new StringWriter();
+        formatter.format(reader, writer);
+        assertEquals("public final class Main {\n" +
+                "    private Main() {}\n" +
+                "    /*\n" +
+                "        asdasdasdasd\n" +
+                "        asdasd;\n" +
+                "        asdasdas;\n" +
+                "        aasd\n" +
+                "     */\n" +
+                "    public static void main(final String[] args) throws ReaderException, FormatterException, ConfigException, WriterException {\n" +
+                "        FileReader fileReader = new FileReader(args[0]);\n" +
+                "        FileWriter fileWriter = new FileWriter(args[1]);\n" +
+                "                        IFormatter formatter = new FormatterStateMachine();\n" +
+                "            formatter.format(fileReader, fileWriter);\n" +
+                "            //HERE\n" +
+                "        System.out.println(\"Formatter is done\"); //HERE 2\n" +
+                "    }\n" +
+                "}", writer.getString());
+    }
 }
