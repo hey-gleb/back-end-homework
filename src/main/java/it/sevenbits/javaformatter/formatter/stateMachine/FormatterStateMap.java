@@ -30,6 +30,7 @@ public class FormatterStateMap {
         IState multiComment = new FormatterState(config.getProperty("FORMATTER_STATE_MULTILINE_COM"));
         IState afterSemicolonState = new FormatterState(config.getProperty("FORMATTER_STATE_AFTER_SEMICOLON"));
         IState newLineState = new FormatterState("NEW_LINE");
+        IState newLineInComment = new FormatterState("NEW_LINE_IN_COMMENT");
 
         stateMap.put(new Pair<>(defaultState, null), defaultState);
         stateMap.put(new Pair<>(defaultState, "TEXT"), spaceAllowed);
@@ -52,7 +53,10 @@ public class FormatterStateMap {
         stateMap.put(new Pair<>(singleComment, "NEW_LINE"), afterSemicolonState);
 
         stateMap.put(new Pair<>(multiComment, null), multiComment);
+        stateMap.put(new Pair<>(multiComment, "NEW_LINE"), newLineInComment);
         stateMap.put(new Pair<>(multiComment, "END_MULTI_LINE_COMMENT"), newLineState);
+
+        stateMap.put(new Pair<>(newLineInComment, null), multiComment);
 
         stateMap.put(new Pair<>(newLineState, null), spaceAllowed);
         stateMap.put(new Pair<>(newLineState, "NEW_LINE"), newLineState);

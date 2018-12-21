@@ -31,6 +31,7 @@ public class CommandMap {
         IState multiComment = new FormatterState(config.getProperty("FORMATTER_STATE_MULTILINE_COM"));
         IState afterSemicolonState = new FormatterState(config.getProperty("FORMATTER_STATE_AFTER_SEMICOLON"));
         IState newLineState = new FormatterState("NEW_LINE");
+        IState newLineInComment = new FormatterState("NEW_LINE_IN_COMMENT");
 
         ICommand append = new Append(formatterContext);
         ICommand appendBraceClose = new AppendBraceClose(formatterContext);
@@ -45,7 +46,7 @@ public class CommandMap {
         commandMap.put(new Pair<>(null, "WHITESPACE"), ignore);
         commandMap.put(new Pair<>(null, "SEMICOLON"), append);
         commandMap.put(new Pair<>(null, "SINGLE_LINE_COMMENT"), append);
-        commandMap.put(new Pair<>(null, "MULTI_LINE_COMMENT"), appendAfterNewLine);
+        commandMap.put(new Pair<>(null, "MULTI_LINE_COMMENT"), appendAfterNew);
         commandMap.put(new Pair<>(null, "END_MULTI_LINE_COMMENT"), append);
         commandMap.put(new Pair<>(null, "NEW_LINE"), ignore);
 
@@ -64,11 +65,14 @@ public class CommandMap {
         commandMap.put(new Pair<>(multiComment, "CURLY_BRACE_CLOSE"), append);
         commandMap.put(new Pair<>(multiComment, "WHITESPACE"), append);
         commandMap.put(new Pair<>(multiComment, "SEMICOLON"), append);
-        commandMap.put(new Pair<>(multiComment, "NEW_LINE"), append);
+        commandMap.put(new Pair<>(multiComment, "NEW_LINE"), ignore);
 
         commandMap.put(new Pair<>(newLineState, "TEXT"), appendAfterNew);
         commandMap.put(new Pair<>(newLineState, "NEW_LINE"), ignore);
         commandMap.put(new Pair<>(newLineState, "WHITESPACE"), ignore);
+
+        commandMap.put(new Pair<>(newLineInComment, "TEXT"), appendAfterNew);
+        commandMap.put(new Pair<>(newLineInComment, "WHITESPACE"), appendAfterNew);
 
         commandMap.put(new Pair<>(spaceAllowedState, "WHITESPACE"), append);
     }
